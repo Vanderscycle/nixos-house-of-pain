@@ -11,26 +11,15 @@
 , cups ? pkgs.cups
 , curl ? pkgs.curl
 , dbus-glib ? pkgs.dbus-glib
-#, dbus_libs ? pkgs.dbus.libs
 , fontconfig ? pkgs.fontconfig
 , freetype ? pkgs.freetype
 , gdk-pixbuf ? pkgs.gdk-pixbuf
 , glib ? pkgs.glib
 , glibc ? pkgs.glibc
-# , gst-plugins-base ? pkgs.gst-plugins-base
-# , gstreamer ? pkgs.gstreamer
 , gtk2 ? pkgs.gtk2
 , gtk3 ? pkgs.gtk3
 , kerberos ? pkgs.kerberos
 , libX11 ? pkgs.xorg.libX11
-# , libXScrnSaver ? pkgs.libXScrnSaver
-# , libXcomposite ? pkgs.libXcomposite
-# , libXdamage ? pkgs.libXdamage
-# , libXext ? pkgs.libXext
-# , libXfixes ? pkgs.libXfixes
-# , libXinerama ? pkgs.libXinerama
-# , libXrender ? pkgs.libXrender
-# , libXt ? pkgs.libXt
 , libXtst ? pkgs.xorg.libXtst
 , libcanberra_gtk2 ? pkgs.libcanberra-gtk2
 , mesa ? pkgs.mesa
@@ -79,26 +68,15 @@ stdenv.mkDerivation rec {
     cups
     curl
     dbus-glib
-    # dbus_libs
     fontconfig
     freetype
     gdk-pixbuf
     glib
     glibc
-    # gst-plugins-base
-    # gstreamer
     gtk2
     gtk3
     kerberos
     libX11
-    # libXScrnSaver
-    # libXcomposite
-    # libXdamage
-    # libXext
-    # libXfixes
-    # libXinerama
-    # libXrender
-    # libXt
     libcanberra_gtk2
     mesa
     nspr
@@ -127,14 +105,14 @@ stdenv.mkDerivation rec {
       --suffix XDG_DATA_DIRS : "$XDG_ICON_DIRS"
   '';
 
-  # meta = with stdenv.lib; {
-  #   description = "A web browser (binary package)";
-  #   homepage = https://www.waterfoxproject.org/;
-  #   license = {
-  #     free = false;
-  #     url = https://www.waterfoxproject.org/terms;
-  #   };
-  #   maintainers = with stdenv.lib.maintainers; [ iamale ];
-  #   platforms = platforms.linux;
-  # };
+  meta = with lib; {
+    description = "A web browser (binary package)";
+    homepage = "https://www.waterfoxproject.org/";
+    license = {
+      free = false;
+      url = "https://www.waterfoxproject.org/terms";
+    };
+    maintainers = with lib.maintainers; [ iamale ];
+    platforms = platforms.linux;
+  };
 }
