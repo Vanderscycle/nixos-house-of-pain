@@ -1,0 +1,6 @@
+{
+  "name": "devcontainers-cli",
+  "dependencies": {
+    "@devcontainers/cli": "latest"
+  }
+}
