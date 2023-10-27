@@ -15,8 +15,8 @@ let
     };
   };
   args = {
-    name = "devcontainers-cli";
-    packageName = "devcontainers-cli";
+    name = "devcontainers";
+    packageName = "devcontainers";
     src = ./.;
     dependencies = [
       sources."@devcontainers/cli-0.52.1"
