@@ -3,48 +3,25 @@
 {nodeEnv, fetchurl, fetchgit, nix-gitignore, stdenv, lib, globalBuildInputs ? []}:
 
 let
-  sources = {
-    "@devcontainers/cli-0.52.1" = {
-      name = "_at_devcontainers_slash_cli";
-      packageName = "@devcontainers/cli";
-      version = "0.52.1";
-      src = fetchurl {
-        url = "https://registry.npmjs.org/@devcontainers/cli/-/cli-0.52.1.tgz";
-        sha512 = "sYK1cHHDVjdBIdxjMB8O668+qf0AAEJPMbeMR9ZTbUzXQBNke88vUOZ6DD9SjsqeE5es8SpWX6jV6gaItzJFyA==";
-      };
+  sources = {};
+in
+{
+  "@devcontainers/cli" = nodeEnv.buildNodePackage {
+    name = "_at_devcontainers_slash_cli";
+    packageName = "@devcontainers/cli";
+    version = "0.52.1";
+    src = fetchurl {
+      url = "https://registry.npmjs.org/@devcontainers/cli/-/cli-0.52.1.tgz";
+      sha512 = "sYK1cHHDVjdBIdxjMB8O668+qf0AAEJPMbeMR9ZTbUzXQBNke88vUOZ6DD9SjsqeE5es8SpWX6jV6gaItzJFyA==";
     };
-  };
-  args = {
-    name = "devcontainers";
-    packageName = "devcontainers";
-    src = ./.;
-    dependencies = [
-      sources."@devcontainers/cli-0.52.1"
-    ];
     buildInputs = globalBuildInputs;
     meta = {
+      description = "Dev Containers CLI";
+      homepage = "https://github.com/devcontainers/cli#readme";
+      license = "MIT";
     };
     production = true;
     bypassCache = true;
     reconstructLock = true;
   };
-in
-{
-  args = args;
-  sources = sources;
-  tarball = nodeEnv.buildNodeSourceDist args;
-  package = nodeEnv.buildNodePackage args;
-  shell = nodeEnv.buildNodeShell args;
-  nodeDependencies = nodeEnv.buildNodeDependencies (lib.overrideExisting args {
-    src = stdenv.mkDerivation {
-      name = args.name + "-package-json";
-      src = nix-gitignore.gitignoreSourcePure [
-        "*"
-        "!package.json"
-        "!package-lock.json"
-      ] args.src;
-      dontBuild = true;
-      installPhase = "mkdir -p $out; cp -r ./* $out;";
-    };
-  });
 }

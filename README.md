@@ -10,7 +10,9 @@ The way of NixOs is the way of pain and self-hatred. Don't bother asking for hel
 - [Devcontainers-cli](./devcontainers)
 
 ### Lessons learned
-- when using node2nix don't forget to acutally install the nodejs packages
+- node2nix -i <input> -18 (don't forget the version) 
+- the node-packages.json is not a carbon copy of a normal package.json but an array of js packages
+- nix-shell -A @devcontainers/cli
 
 ## References 
 - hlissner [doots](https://github.com/hlissner/dotfiles)
