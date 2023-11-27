@@ -32,13 +32,15 @@
 , gnused ? pkgs.gnused
 , gnugrep ? pkgs.gnugrep
 , gnupg ? pkgs.gnupg
+, commandLineArgs ? ""
 }:
 
 with lib;
 
 let
-  # Upstream source
-  version = "G6.0.5";
+
+  wrapArgs = lib.optionalString (commandLineArgs != "") "${commandLineArgs}";
+  version = "G6.0.6";
 
   srcs = {
     "x86_64-linux" = fetchurl {
@@ -103,7 +105,8 @@ stdenv.mkDerivation rec {
       --set LD_LIBRARY_PATH "$libPath" \
       --prefix XDG_DATA_DIRS : "$GSETTINGS_SCHEMAS_PATH:" \
       --suffix XDG_DATA_DIRS : "$XDG_ICON_DIRS"
-  '';
+      ${wrapArgs}
+  ''; # kept for override example
 
   meta = with lib; {
     description = "A web browser (binary package)";
