@@ -45,7 +45,7 @@ let
   srcs = {
     "x86_64-linux" = fetchurl {
     url = "https://cdn1.waterfox.net/waterfox/releases/${version}/Linux_x86_64/waterfox-${version}.tar.bz2";
-    sha256 = "01jmmk1ryq89fynknbvpfn28yhwq6dz0zywwh8jkqnb0fvrq67l1";
+    sha256 = "0csgx5y7ky6azfsk5bmfab99615njs0v2cp0a8082l7dp1nyd9h8";
 
     };
   };
