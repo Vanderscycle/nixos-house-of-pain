@@ -1,9 +1,6 @@
 {
   pkgs ? import <nixpkgs> { },
 }:
-pkgs.writeScriptBin "hello" ''
-  echo -e "hello world"
-''
 pkgs.mkShell {
   # desired packages 
   nativeBuildInputs = with pkgs; [
